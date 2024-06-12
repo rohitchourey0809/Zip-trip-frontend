@@ -24,20 +24,24 @@ function TodoItemPage() {
       });
   }, [id]);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (loading) return <div className="todo-loading">Loading...</div>;
+  if (error) return <div className="todo-error">{error}</div>;
 
   return (
     <div className="todo-container">
-      <img src={todo.image} alt={todo.title} />
+      <div className="todo-image-container">
+        <img src={todo.image} alt={todo.title} className="todo-image" />
+      </div>
       <div className="todo-details">
-        <h1>{todo.title}</h1>
-        <p>{todo.description}</p>
-        <p>Price: ${todo.price}</p>
-        <p>Category: {todo.category}</p>
-        <p>
-          Rating: {todo.rating.rate} (based on {todo.rating.count} reviews)
-        </p>
+        <h1 className="todo-title">{todo.title}</h1>
+        <p className="todo-description">{todo.description}</p>
+        <div className="todo-info">
+          <p className="todo-price">Price: ${todo.price}</p>
+          <p className="todo-category">Category: {todo.category}</p>
+          <p className="todo-rating">
+            Rating: {todo.rating.rate} (based on {todo.rating.count} reviews)
+          </p>
+        </div>
       </div>
     </div>
   );

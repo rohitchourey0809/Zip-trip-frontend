@@ -1,4 +1,4 @@
-/* src/pages/TodoItemPage.css */
+/* TodoItemPage.css */
 
 .todo-container {
   display: flex;
@@ -8,24 +8,51 @@
   font-family: Arial, sans-serif;
 }
 
-.todo-container img {
+.todo-image-container {
   max-width: 100%;
-  height: auto;
+  overflow: hidden;
+  height:500px;
   border-radius: 8px;
-  margin: 20px 0;
+  margin-bottom: 20px;
+  object-fit: contain;
 }
 
-.todo-container h1 {
+.todo-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.todo-image:hover {
+  transform: scale(1.1);
+}
+
+.todo-details {
+  max-width: 600px;
+  text-align: center;
+}
+
+.todo-title {
   font-size: 2rem;
   margin-bottom: 10px;
   color: #333;
 }
 
-.todo-container p {
+.todo-description {
   font-size: 1rem;
   color: #666;
-  margin-bottom: 10px;
-  text-align: center;
+  margin-bottom: 20px;
+}
+
+.todo-info {
+  display: flex;
+  justify-content: space-around;
+}
+
+.todo-info p {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
 }
 
 @media (min-width: 768px) {
@@ -35,22 +62,15 @@
     padding: 40px;
   }
 
-  .todo-container img {
-    width: 300px;
-    height: auto;
-    margin-right: 40px;
-  }
-
   .todo-details {
-    max-width: 600px;
     text-align: left;
   }
 
-  .todo-details h1 {
+  .todo-title {
     font-size: 2.5rem;
   }
 
-  .todo-details p {
+  .todo-description {
     font-size: 1.2rem;
   }
 }
