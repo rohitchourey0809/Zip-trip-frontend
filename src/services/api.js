@@ -1,1 +1,1 @@
-export const API = "https://backend-ziptrip.vercel.app/todos";
+export const API = "https://backend-ziptrip.vercel.app/api/todos";
