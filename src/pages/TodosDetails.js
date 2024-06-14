@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Modal from "../components/Modal";
 import { API } from "../services/api";
 
 function TodoDetailsPage() {
-  const { id } = useParams();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const id = searchParams.get("id");
+
+  console.log("id-------------->", id);
   const [todo, setTodo] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [editTitle, setEditTitle] = useState("");
-  const [editProduct, setEditProduct] = useState("");
+  const [editTask, setEditTask] = useState("");
   const [editDescription, setEditDescription] = useState("");
 
   useEffect(() => {
@@ -17,7 +21,7 @@ function TodoDetailsPage() {
       .then((data) => {
         setTodo(data);
         setEditTitle(data.title);
-        setEditProduct(data.product);
+        setEditTask(data.task);
         setEditDescription(data.description);
       });
   }, [id]);
@@ -26,7 +30,7 @@ function TodoDetailsPage() {
     const updatedTodo = {
       ...todo,
       title: editTitle,
-      product: editProduct,
+      product: editTask,
       description: editDescription,
     };
 
@@ -86,8 +90,8 @@ function TodoDetailsPage() {
               <input
                 className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                 type="text"
-                value={editProduct}
-                onChange={(e) => setEditProduct(e.target.value)}
+                value={editTask}
+                onChange={(e) => setEditTask(e.target.value)}
                 required
                 placeholder="Product"
               />

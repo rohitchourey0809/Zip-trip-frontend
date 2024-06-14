@@ -9,7 +9,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<TodosPage />} />
-        <Route path="/todo/:id" element={<TodoDetailsPage />} />
+        <Route path="/todo" element={<TodoDetailsPage />} />
       </Routes>
     </Router>
   );

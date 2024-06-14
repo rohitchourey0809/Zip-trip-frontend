@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 function TodosPage() {
   const [todos, setTodos] = useState([]);
   const [title, setTitle] = useState("");
-  const [product, setProduct] = useState("");
+  const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
 
   useEffect(() => {
@@ -18,7 +18,7 @@ function TodosPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newTodo = { title, product, description };
+    const newTodo = { title, task, description };
     fetch(`${API}`, {
       method: "POST",
       headers: {
@@ -30,7 +30,7 @@ function TodosPage() {
       .then((data) => {
         setTodos([...todos, data]);
         setTitle("");
-        setProduct("");
+        setTask("");
         setDescription("");
         // Show success toast
         toast.success("Todo added successfully!", {
@@ -71,9 +71,11 @@ function TodosPage() {
         draggable: true,
         progress: undefined,
       });
-      setTodos(todos.filter((todo) => todo.id !== id));
+      // Update state correctly by filtering based on todo._id
+      setTodos(todos.filter((todo) => todo._id !== id));
     });
   };
+
 
   return (
     <div className="container mx-auto p-4">
@@ -93,9 +95,9 @@ function TodosPage() {
             />
             <input
               type="text"
-              placeholder="Product"
-              value={product}
-              onChange={(e) => setProduct(e.target.value)}
+              placeholder="Task"
+              value={task}
+              onChange={(e) => setTask(e.target.value)}
               required
               className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
             />
@@ -120,17 +122,17 @@ function TodosPage() {
           <h1 className="text-3xl font-bold mb-6 text-center">Todo List</h1>
           {todos.map((todo) => (
             <div
-              key={todo.id}
+              key={todo._id}
               className="bg-white shadow-md rounded p-4 flex justify-between items-center transition hover:shadow-lg"
             >
               <Link
-                to={`/todo/${todo.id}`}
+                to={`/todo?id=${todo._id}`}
                 className="text-blue-500 hover:text-blue-600 transition"
               >
                 {todo.title}
               </Link>
               <button
-                onClick={() => handleDelete(todo.id)}
+                onClick={() => handleDelete(todo._id)}
                 className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
               >
                 Delete
