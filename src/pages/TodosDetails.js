@@ -30,7 +30,7 @@ function TodoDetailsPage() {
     const updatedTodo = {
       ...todo,
       title: editTitle,
-      product: editTask,
+      task: editTask,
       description: editDescription,
     };
 
@@ -55,7 +55,7 @@ function TodoDetailsPage() {
       <div className="max-w-lg w-full p-6 bg-white rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-4">{todo.title}</h1>
         <p className="mb-2">
-          <strong>Product:</strong> {todo.product}
+          <strong>Product:</strong> {todo.task}
         </p>
         <p className="mb-4">
           <strong>Description:</strong> {todo.description}
@@ -93,7 +93,7 @@ function TodoDetailsPage() {
                 value={editTask}
                 onChange={(e) => setEditTask(e.target.value)}
                 required
-                placeholder="Product"
+                placeholder="Task"
               />
               <textarea
                 className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
